@@ -252,7 +252,7 @@ ws2[f"A{r+1}"] = "Os percentuais representam a sugestão de alocação do aporte
 ws2[f"A{r+1}"].font = Font(size=9, italic=True, color="808080")
 
 # ============================================================================
-# NAMED RANGES (iguais ao exemplo de referência)
+# NAMED RANGES utilitários da simulação
 # ============================================================================
 def add_name(name, ref):
     wb.defined_names.add(openpyxl.workbook.defined_name.DefinedName(name, attr_text=ref))

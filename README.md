@@ -22,11 +22,9 @@ A planilha automatiza cálculos complexos e gera uma visão clara do potencial d
 
 | Arquivo | Descrição |
 |--------|-----------|
-| `Simulador_FII.xlsx` | Planilha principal com o simulador (2 abas), baseada no modelo padrão do desafio. |
-| `Simulador_FII modelo padrão.xlsx` | Arquivo de formatação base fornecido como referência no desafio. |
-| `fix_modelo.py` | Script que aplica a formatação do modelo padrão e corrige a coluna CHAVE da aba Perfis. |
+| `Simulador_FII.xlsx` | Planilha principal com o simulador (2 abas). |
+| `fix_modelo.py` | Script que garante a coluna CHAVE da aba Perfis e ajusta a alocação por tipo de FII. |
 | `build_excel.py` | Script Python (openpyxl) auxiliar de geração da planilha. |
-| `exemplo.xlsx` | Arquivo de apoio/original fornecido como referência no desafio. |
 | `contexto do desafio.txt` | Texto original do desafio. |
 | `README.md` | Documentação do projeto. |
 
@@ -88,7 +86,7 @@ Tabela de referência com a alocação sugerida (%) por perfil de risco e tipo d
 
 ## 🔁 Reprodutibilidade
 
-A planilha foi gerada a partir do modelo padrão do desafio e ajustada programaticamente com `openpyxl`:
+A planilha foi ajustada programaticamente com `openpyxl` (garantia da coluna CHAVE de alocação):
 
 ```bash
 pip install openpyxl

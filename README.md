@@ -22,8 +22,10 @@ A planilha automatiza cálculos complexos e gera uma visão clara do potencial d
 
 | Arquivo | Descrição |
 |--------|-----------|
-| `Simulador_FII.xlsx` | Planilha principal com o simulador (2 abas). |
-| `build_excel.py` | Script Python (openpyxl) que gera a planilha de forma reproduzível. |
+| `Simulador_FII.xlsx` | Planilha principal com o simulador (2 abas), baseada no modelo padrão do desafio. |
+| `Simulador_FII modelo padrão.xlsx` | Arquivo de formatação base fornecido como referência no desafio. |
+| `fix_modelo.py` | Script que aplica a formatação do modelo padrão e corrige a coluna CHAVE da aba Perfis. |
+| `build_excel.py` | Script Python (openpyxl) auxiliar de geração da planilha. |
 | `exemplo.xlsx` | Arquivo de apoio/original fornecido como referência no desafio. |
 | `contexto do desafio.txt` | Texto original do desafio. |
 | `README.md` | Documentação do projeto. |
@@ -54,7 +56,7 @@ A planilha automatiza cálculos complexos e gera uma visão clara do potencial d
 | Rendimento (juros) acumulado | `=patrimonio-TotalInvestido` |
 
 4. A seção **Cenários** projeta o patrimônio e os dividendos em 2, 5, 10, 20 e 30 anos.
-5. Na seção **Perfil de Alocação** (lateral direita), use o **menu suspenso em "Perfil de risco" (célula H21)** para escolher entre Conservador, Moderado ou Agressivo. Ao alterar esse valor, a tabela recalcula automaticamente o **Percentual Sugerido** e o **Valor Mensal (R$)** de cada tipo de FII via `PROCV` contra a aba **Perfis**.
+5. Na seção **Perfil de Alocação** (lateral direita, colunas K:L:M), use o **menu suspenso em "Perfil de risco" (célula L41)** para escolher entre Conservador, Moderado ou Agressivo. Ao alterar esse valor, a tabela recalcula automaticamente o **Percentual Sugerido** e o **Valor Mensal (R$)** de cada tipo de FII via `PROCV` contra a aba **Perfis**.
 6. O gráfico **Evolução do Patrimônio, Investimento e Rendimento** (à direita) mostra, em 3 séries, a curva dos primeiros 60 meses: patrimônio acumulado (azul), total efetivamente investido (cinza) e rendimento/juros (verde).
 
 ---
@@ -86,11 +88,11 @@ Tabela de referência com a alocação sugerida (%) por perfil de risco e tipo d
 
 ## 🔁 Reprodutibilidade
 
-A planilha foi gerada programaticamente com `openpyxl`, garantindo que qualquer pessoa possa recriá-la:
+A planilha foi gerada a partir do modelo padrão do desafio e ajustada programaticamente com `openpyxl`:
 
 ```bash
 pip install openpyxl
-python build_excel.py
+python fix_modelo.py
 ```
 
 ---

@@ -95,15 +95,6 @@ python fix_alocacao.py
 
 ---
 
-## ✅ Objetivos de aprendizagem atendidos
-
-- [x] Criar ferramenta de simulação de investimentos em Excel.
-- [x] Aplicar cálculos financeiros (rendimento mensal e dividendos).
-- [x] Documentar processo técnico de forma clara e estruturada.
-- [x] Utilizar o GitHub para compartilhar documentação técnica.
-
----
-
 ## ⚠️ Disclaimer
 
 Esta ferramenta tem **finalidade educacional**. Os retornos simulados são estimativas baseadas nos parâmetros informados e não constituem recomendação de investimento.

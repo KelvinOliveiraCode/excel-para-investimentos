@@ -54,8 +54,8 @@ A planilha automatiza cálculos complexos e gera uma visão clara do potencial d
 | Rendimento (juros) acumulado | `=patrimonio-TotalInvestido` |
 
 4. A seção **Cenários** projeta o patrimônio e os dividendos em 2, 5, 10, 20 e 30 anos.
-5. O gráfico **Evolução do Patrimônio** mostra a curva dos primeiros 60 meses.
-6. A seção **Perfil de Alocação** distribui o aporte mensal entre os tipos de FII conforme o perfil de risco (Conservador, Moderado ou Agressivo), usando `PROCV` contra a tabela da aba **Perfis**.
+5. Na seção **Perfil de Alocação** (lateral direita), use o **menu suspenso em "Perfil de risco" (célula H21)** para escolher entre Conservador, Moderado ou Agressivo. Ao alterar esse valor, a tabela recalcula automaticamente o **Percentual Sugerido** e o **Valor Mensal (R$)** de cada tipo de FII via `PROCV` contra a aba **Perfis**.
+6. O gráfico **Evolução do Patrimônio, Investimento e Rendimento** (à direita) mostra, em 3 séries, a curva dos primeiros 60 meses: patrimônio acumulado (azul), total efetivamente investido (cinza) e rendimento/juros (verde).
 
 ---
 
@@ -76,8 +76,8 @@ A planilha automatiza cálculos complexos e gera uma visão clara do potencial d
 - Bloco **Configurações do Investidor**.
 - Bloco **Parâmetros da Simulação** (entradas + resultados).
 - Bloco **Cenários** (2, 5, 10, 20 e 30 anos).
-- Bloco **Projeção Mensal** (base do gráfico, 60 meses).
-- Bloco **Perfil de Alocação** (PAPEL, TIJOLO, HÍBRIDOS, FOFs, DESENVOLVIMENTO, HOTELARIAS).
+- Bloco **Projeção Mensal** (base do gráfico, 60 meses, com colunas Patrimônio, Total Investido e Rendimento).
+- Bloco **Perfil de Alocação** à direita (PAPEL, TIJOLO, HÍBRIDOS, FOFs, DESENVOLVIMENTO, HOTELARIAS), com **menu suspenso de Perfil de Risco** que recalcula a alocação ao ser alterado.
 
 ### Aba `Perfis`
 Tabela de referência com a alocação sugerida (%) por perfil de risco e tipo de FII, incluindo a coluna **CHAVE** (`Perfil-Tipo`) usada pelo `PROCV`.

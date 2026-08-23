@@ -23,7 +23,7 @@ A planilha automatiza cálculos complexos e gera uma visão clara do potencial d
 | Arquivo | Descrição |
 |--------|-----------|
 | `Simulador_FII.xlsx` | Planilha principal com o simulador (2 abas). |
-| `fix_modelo.py` | Script que garante a coluna CHAVE da aba Perfis e ajusta a alocação por tipo de FII. |
+| `fix_alocacao.py` | Script que garante a coluna CHAVE da aba Perfis e ajusta a alocação por tipo de FII. |
 | `build_excel.py` | Script Python (openpyxl) auxiliar de geração da planilha. |
 | `contexto do desafio.txt` | Texto original do desafio. |
 | `README.md` | Documentação do projeto. |
@@ -90,7 +90,7 @@ A planilha foi ajustada programaticamente com `openpyxl` (garantia da coluna CHA
 
 ```bash
 pip install openpyxl
-python fix_modelo.py
+python fix_alocacao.py
 ```
 
 ---

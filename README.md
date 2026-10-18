@@ -1,67 +1,50 @@
-# Excel para Investimentos — Simulador de FIIs
+# excel-para-investimentos
 
-![linguagem: Python](https://img.shields.io/badge/linguagem-Python-blue)  
-![status: concluido](https://img.shields.io/badge/status-concluido-green)  
-![licenca: MIT](https://img.shields.io/badge/licenca-MIT-blue)
+![status: concluido](https://img.shields.io/badge/status-concluido-green)   ![licenca: MIT](https://img.shields.io/badge/licenca-MIT-blue)
 
-### Descrição
-Simulador de investimentos em FIIs no Excel com FV, cenários e perfis de alocação.
+## Resumo
 
-### O que faz
-Simulador de investimentos em FIIs no Excel com FV, cenários e perfis de alocação.
+Simulador de investimentos em FIIs no Excel com FV, cenários e perfis de alocação
 
-### Tecnologias
-- Python
-- Excel
+## Problema / por que existe
 
-### Como usar
-1. Instale as dependências: `pip install -r requirements.txt` (se o arquivo existir no repositório).
-2. Execute os testes: `python -m pytest`.
-Verifique os arquivos reais do repositório para os comandos exatos.
+O projeto oferece um guia, modelo ou plano de estudo para um tema especifico, com foco em praticidade e aplicacao direta.
 
-### Estrutura
-Consulte a árvore do repositório para a organização exata de pastas e arquivos.
+## O que contem
 
-### Testes
-Não há contagem de testes registrada nesta metadata. Adicione e execute testes apropriados à linguagem (pytest para Python, ./mvnw test para Java, npm test para JavaScript/TypeScript).
+Simulador de investimentos em FIIs no Excel com FV, cenários e perfis de alocação
 
-### Licença
-MIT
+## Como usar
 
-### Autor
-Kelvin Oliveira — github.com/KelvinOliveiraCode
+Consulte os arquivos do repositorio. Abra cada documento e aplique as orientacoes no contexto desejado.
 
----
+## Estrutura do projeto
 
-# Excel for Investments — FII Simulator
+- build_excel.py, contexto do desafio.txt, fix_alocacao.py, LICENSE, README.en.md, README.md, Simulador_FII.xlsx, update_excel.py
 
-![language: Python](https://img.shields.io/badge/language-Python-blue)  
-![status: concluido](https://img.shields.io/badge/status-concluido-green)  
-![license: MIT](https://img.shields.io/badge/license-MIT-blue)
 
-### Description
-FII investment simulator in Excel with FV, scenarios and allocation profiles.
+## Tecnologias
 
-### What it does
-FII investment simulator in Excel with FV, scenarios and allocation profiles.
+Documentacao / guia (sem codigo de aplicacao).
 
-### Technologies
-- Python
-- Excel
+## Trade-offs e decisões
 
-### How to use
-1. Install dependencies: `pip install -r requirements.txt` (if the file exists in the repository).
-2. Run tests: `python -m pytest`.
-Check the actual repository files for exact commands.
+- Formato aberto (markdown, texto, planilha) para facilitar adaptacao.
+- Foco em conteudo pratico e aplicavel.
 
-### Structure
-Check the repository tree for the exact folder and file organization.
+## Limitações conhecidas
 
-### Tests
-No test count recorded in this metadata. Add and run tests appropriate for the language (pytest for Python, ./mvnw test for Java, npm test for JavaScript/TypeScript).
+- Guia de referencia; nao substitui ferramenta automatizada.
 
-### License
-MIT
+## Testes
 
-### Author
-Kelvin Oliveira — github.com/KelvinOliveiraCode
+Nao se aplica (conteudo de referencia).
+
+## Licença
+
+Distribuído sob a licenca MIT. Consulte o arquivo `LICENSE` do repositorio.
+
+## Autor
+
+Kelvin Oliveira, https://github.com/KelvinOliveiraCode
+Portfolio: https://kelvinoliveiracode.github.io/portfolio/

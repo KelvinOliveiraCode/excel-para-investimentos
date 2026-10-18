@@ -14,7 +14,7 @@
 
 ## O que é
 
-Simulador de investimentos em FIIs no Excel com FV, cenários e perfis de alocação | FII investment simulator in Excel
+Simulador de investimentos em FIIs no Excel com FV, cenários e perfis de alocação
 
 ---
 

@@ -1,124 +1,119 @@
 # excel-para-investimentos
 
-<div align="center">
-
 [English](README.en.md) · **Português (Brasil)**
 
-</div>
-
-[![Python 3](https://img.shields.io/badge/Python-3.x-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/) [![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikit-learn)](https://scikit-learn.org/) [![pandas](https://img.shields.io/badge/pandas-150458?style=flat-square&logo=pandas)](https://pandas.pydata.org/) [![pytest](https://img.shields.io/badge/pytest-0A9EDC?style=flat-square&logo=pytest)](https://docs.pytest.org/) [![MIT License](https://img.shields.io/badge/License-MIT-f4c430?style=flat-square)](LICENSE)
-
-### Simulador de investimentos em FIIs no Excel com FV, cenários e perfis de alocação
-
----
+![Python](https://img.shields.io/badge/Python-3-3776AB?style=flat-square&logo=python&logoColor=white) ![openpyxl](https://img.shields.io/badge/openpyxl-3.1-1D6F42?style=flat-square) ![Excel](https://img.shields.io/badge/Excel-.xlsx-217346?style=flat-square&logo=microsoftexcel&logoColor=white)
 
 ## O que é
 
-Simulador de investimentos em FIIs no Excel com FV, cenários e perfis de alocação
+Simulador de investimentos em Fundos de Investimento Imobiliário (FII) construído como planilha Excel gerada por script Python. A planilha projeta patrimônio acumulado, dividendos mensais e a divisão do aporte por tipo de FII conforme o perfil de risco do investidor.
 
----
+## Status
 
-## Início Rápido
+Funcional. `build_excel.py` gera `Simulador_FII.xlsx` com as abas **Simulador** e **Perfis**; o arquivo versionado no repositório é essa saída. Não há testes automatizados.
 
-```bash
-# Clone e entre
-git clone https://github.com/KelvinOliveiraCode/<repo>.git
-cd <repo>
+## Funcionalidades
 
-# Instale dependências
-# Nenhum requirements.txt detectado
+- **Configuração do investidor**: salário, rendimento médio da carteira e sugestão de aporte de 30% do salário.
+- **Parâmetros da simulação**: aporte mensal, prazo em anos e taxa de valorização mensal.
+- **Resultados por fórmula**: patrimônio acumulado (`FV`), dividendos mensais estimados, total efetivamente investido e juros acumulados.
+- **Cenários**: patrimônio e dividendo mensal em 2, 5, 10, 20 e 30 anos.
+- **Projeção mensal**: tabela de 60 meses com o patrimônio mês a mês, usada como fonte do gráfico.
+- **Gráfico de linha**: evolução do patrimônio nos primeiros 60 meses.
+- **Alocação por perfil**: tabela com PAPEL, TIJOLO, HÍBRIDOS, FOFs, DESENVOLVIMENTO e HOTELARIAS, com percentual e valor mensal por tipo.
+- **Aba Perfis**: tabela de referência com 3 perfis (Conservador, Moderado, Agressivo) × 6 tipos de FII, consultada por `PROCV`.
+- **Ranges nomeados**: `aporte`, `qtd_anos`, `taxa_mensal`, `patrimonio`, `rendimento_carteira`, entre outros, deixam as fórmulas legíveis.
 
-# Execute o projeto
-python main.py
+## Arquitetura
 
-# Execute os testes
-pytest
+```mermaid
+flowchart TD
+    B[build_excel.py] --> S[aba Simulador]
+    B --> P[aba Perfis]
+    B --> N[defined names: aporte, qtd_anos, taxa_mensal...]
+    S --> C[Configuração do investidor]
+    S --> M[Parâmetros da simulação]
+    S --> R[Resultados: FV, dividendos, total investido]
+    S --> CEN[Cenários 2/5/10/20/30 anos]
+    S --> PROJ[Projeção mensal de 60 meses]
+    PROJ --> G[Gráfico de linha]
+    S -- PROCV por perfil + tipo --> P
+    U[update_excel.py] -. patch de layout .-> S
+    F[fix_alocacao.py] -. ajuste da CHAVE em Perfis .-> P
 ```
 
-## Como funciona
+O fluxo é: `build_excel.py` cria a planilha inteira; `update_excel.py` e `fix_alocacao.py` são passos de correção aplicados **depois**, sobre uma versão intermediária do arquivo (ver Limitações).
 
-O projeto é organizado como um **pipeline modular** com etapas independentes:
+## Stack
 
-- `build_excel`
-- `fix_alocacao`
-- `update_excel`
+- Python 3
+- `openpyxl` (estilos, validação de dados, gráficos, ranges nomeados)
+- Excel / LibreOffice para abrir e simular
 
-Cada módulo tem responsabilidade única e pode ser testado ou substituído independentemente.
+## Estrutura do repositório
 
----
+```
+excel-para-investimentos/
+├── build_excel.py             # gera Simulador_FII.xlsx (Simulador + Perfis)
+├── update_excel.py            # patch: dropdown de perfil, colunas e gráfico
+├── fix_alocacao.py            # patch: garante a coluna CHAVE da aba Perfis
+├── Simulador_FII.xlsx         # saída versionada
+├── contexto do desafio.txt    # enunciado do desafio DIO
+├── LICENSE                    # MIT
+├── README.md                  # este arquivo
+└── README.en.md               # versão em inglês
+```
 
-## Capacidades
+## Pré-requisitos e instalação
 
-| Capacidade | Descrição |
-|------------|-------------|
-| Carregamento de Dados | Auto-download do TensorFlow creditcard.csv (284k transações) com cache local |
-| EDA e Visualização | Distribuição de classes, histogramas de Amount, heatmaps de correlação (matplotlib/seaborn) |
-| Pré-processamento | RobustScaler em Amount/Time, split estratificado, remoção de duplicatas |
-| Balanceamento | SMOTE oversampling (fallback: class_weight="balanced") |
-| Modelagem | LogisticRegression, RandomForest, ExtraTrees com RandomizedSearchCV (StratifiedKFold) |
-| Métricas | Accuracy, Precision, Recall, F1, ROC AUC, Specificity, Confusion Matrix |
-| Seleção | Score ponderado: Recall 40% + F1 30% + Precision 20% + Accuracy 10% |
-| Persistência | Serialização joblib para modelo, scaler e resultados completos |
+Python 3 e `openpyxl`:
 
+```bash
+pip install openpyxl
+```
 
----
+Não há `requirements.txt`; `openpyxl` é a única dependência.
 
+## Como executar
 
+```bash
+python build_excel.py
+```
 
----
+Isso recria `Simulador_FII.xlsx` com as abas **Simulador** e **Perfis**. Abra o arquivo e edite apenas as células de entrada (salário, aporte, prazo, taxa, perfil): os campos de resultado são fórmulas.
 
-## Perguntas Frequentes
+Os scripts `update_excel.py` e `fix_alocacao.py` são históricos. `fix_alocacao.py` ainda roda sobre o arquivo atual (regrava a coluna `CHAVE` da aba Perfis). `update_excel.py` **não** roda sobre o arquivo recém-gerado: ele tenta escrever em células mescladas e termina com `AttributeError: 'MergedCell' object attribute 'value' is read-only`.
 
-<details>
-<summary><strong>O que é este projeto?</strong></summary>
+## Testes e qualidade
 
-Um estudo/projeto em Python demonstrando conceitos fundamentais.
+Não há testes automatizados. Verificação manual executada:
 
-</details>
+- `python build_excel.py` → `Simulador_FII.xlsx` criado, abas `['Simulador', 'Perfis']`.
+- `python fix_alocacao.py` → conclui sem erro.
+- `python update_excel.py` → falha com `AttributeError` em célula mesclada (patch de uma versão anterior do layout).
 
-<details>
-<summary><strong>Como executar?</strong></summary>
+## Decisões técnicas e trade-offs
 
-Veja [Início Rápido](#início-rápido) para comandos copiáveis.
+- **Fórmulas do Excel em vez de cálculo no Python**: o usuário muda o aporte e vê o resultado na hora, sem rodar nada; em troca, os valores não são verificáveis sem abrir o Excel.
+- **Ranges nomeados**: `=FV(taxa_mensal,qtd_anos*12,aporte*-1)` é legível e sobrevive a mudanças de linha; em troca, nomes precisam ser mantidos em sincronia com as células.
+- **Perfis em aba separada + `PROCV`**: a tabela de alocação vira dado editável; em troca, a chave composta `PERFIL-TIPO` precisa estar preenchida (papel do `fix_alocacao.py`).
+- **Scripts de patch em vez de um gerador único**: cada ajuste de layout ficou registrado como script; em troca, a ordem de execução importa e o patch mais antigo quebra no layout atual.
+- **Gráfico nativo do `openpyxl`**: sem imagem externa e atualiza com os dados; em troca, o estilo é limitado ao que a biblioteca expõe.
 
-</details>
+## Limitações conhecidas e roadmap
 
-<details>
-<summary><strong>Há testes?</strong></summary>
+- `update_excel.py` mira um layout intermediário (dropdown em `H21`, colunas `D`/`E` a partir da linha 28) e falha no layout atual gerado por `build_excel.py`, onde o seletor de perfil fica em `C92` e a projeção começa na linha 29.
+- O perfil em `C92` é texto livre no arquivo gerado pelo `build_excel.py`; a lista suspensa só existe no patch antigo.
+- Taxa de valorização de 1,079% ao mês é um valor de exemplo, não uma projeção de mercado.
+- Sem testes automatizados.
+- Roadmap: consolidar os três scripts em um gerador idempotente, mover o seletor de perfil para uma célula validada e cobrir as fórmulas com testes de leitura via `openpyxl`.
 
-Nenhum teste automatizado neste repositório.
+## Processo de desenvolvimento
 
-</details>
+Projeto individual de Kelvin Oliveira para um desafio da DIO, construído com apoio de agentes de IA e revisado pelo autor. O escopo veio de `contexto do desafio.txt`; a planilha foi montada em etapas (geração, ajuste de alocação, refinamento de layout).
 
-<details>
-<summary><strong>Posso usar em produção?</strong></summary>
+## Licença e autor
 
-Este é um **projeto de estudo/portfólio**. Revise e endureça (auth, persistência, monitoramento, etc.) antes de usar em produção.
+[MIT](LICENSE).
 
-</details>
-
-
-
----
-
-## Documentação
-
-- **Código-Fonte** ,  Navegue pelo diretório `src/` para detalhes de implementação
-- **Referência da API** ,  Docstrings inline + type hints
-- **Diagrama de Arquitetura** ,  Veja [architecture.mermaid](docs/architecture.mermaid) (se presente)
-- **Changelog** ,  [CHANGELOG.md](CHANGELOG.md) (se presente)
-- **Contribuindo** ,  [CONTRIBUTING.md](CONTRIBUTING.md) (se presente)
-
-## Licença
-
-[MIT](LICENSE) ,  Kelvin Oliveira
-
----
-
-<div align="center">
-
-**Construído com** · Python 3 + scikit-learn + pandas
-
-**Autor** · [Kelvin Oliveira](https://github.com/KelvinOliveiraCode) · [Portfolio](https://kelvinoliveiracode.github.io/portfolio/)
-
-</div>
+**Autor**: [Kelvin Oliveira](https://github.com/KelvinOliveiraCode) · [Portfólio](https://kelvinoliveiracode.github.io/portfolio/)
